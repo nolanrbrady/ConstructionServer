@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const multer = require('multer')
+const multer = require('multer');
+const Controllers = require('./controller/construction.controller.js');
 
 const db = require('./models/index.js');
 db.sequelize.sync({ force: true });
@@ -21,18 +22,19 @@ app.put('/', upload.array(), (req, res, next) => {
    try {
     const data = req.body;
     const route = req.url;
+    Controllers.update(data, res);
 
-    switch(data.type) {
-        case "lod":
-            changeLOD(data, res);
-            break;
-        case "panel":
-            changePanel(data, res);
-            break;
+    // switch(data.type) {
+    //     case "lod":
+    //         changeLOD(data, res);
+    //         break;
+    //     case "panel":
+    //         changePanel(data, res);
+    //         break;
 
-        default:
-            res.send("Error. Please check route");
-    };
+    //     default:
+    //         res.send("Error. Please check route");
+    // };
    } catch(e){
     next(e);
    }
