@@ -5,20 +5,17 @@ const port = 3001
 
 app.use(cors());
 
-app.get('/', (req, res) => {
-    console.log("Req", req);
-    console.log("Res", res);
+app.put('/', (req, res) => {
+    // console.log("Req", req);
+    // console.log("Res", res);
 
-    // const { route } = res.data;
-    const route = '/lod';
+    const route = req.url;
 
-    switch(route.path) {
-        case "/lod":
-            console.log("Changing LOD");
-            this.changeLOD(res);
+    switch(route) {
+        case "/":
+            changeLOD(res);
         case "/panel":
-            console.log("Changing panel");
-            this.changePanel(res);
+            changePanel(res);
 
         default:
             res.send("Error. Please check route");
