@@ -22,36 +22,26 @@ app.put('/', upload.array(), (req, res, next) => {
    try {
     const data = req.body;
     const route = req.url;
+    // Handles the update logic for the DB
     Controllers.update(data, res);
 
-    // switch(data.type) {
-    //     case "lod":
-    //         changeLOD(data, res);
-    //         break;
-    //     case "panel":
-    //         changePanel(data, res);
-    //         break;
-
-    //     default:
-    //         res.send("Error. Please check route");
-    // };
    } catch(e){
     next(e);
    }
 });
 
-const changeLOD = (data, res) => {
-    console.log("Change LOD Function Firing", data);
-    res.send("LOD Changed");
-};
 
-const changePanel = (data, res) => {
-    console.log("Change Panel Function is Firing", data);
-    res.send("Panel Changed");
-};
-
-
-
+app.get('/', async (req, res, next) => {
+    try {
+       const config_data = await Controllers.findOne(req, res);
+       console.log("Configuration Data from DB", config_data);
+       if (config_data) res.send(config_data);
+       else res.send("Sorry, something went wrong getting the rig configuration.")
+    } catch(e) {
+        // next(e);
+        res.send(`Sorry, something went wrong getting the rig configuration. Error: ${e}`);
+    }
+})
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

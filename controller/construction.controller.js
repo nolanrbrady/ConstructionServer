@@ -35,14 +35,14 @@ const findAll = (req, res) => {
 };
 
 // Find a single Tutorial with an id
-const findOne = (req, res) => {
-  
+const findOne = async (req, res) => {
+    const config_data = await Construction.findOne({ where: {id: 1 }});
+    // console.log("Config Data in Controller", config_data);
+    return config_data.dataValues;
 };
 
 // Update a Tutorial by the id in the request
 const update = (data, res) => {
-    // const id = req.params.id;
-    console.log("Update is FIRING", data);
     Construction.update(data, {
       where: { id: 1 }
     })
@@ -79,7 +79,8 @@ const findAllPublished = (req, res) => {
 
 const Controllers = {
     create,
-    update
+    update,
+    findOne
 }
 
 module.exports = Controllers;
