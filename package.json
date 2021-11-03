@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx sequelize-cli db:seed:all && node index.js",
+    "start": "node index.js",
+    "seed": "npx sequelize-cli db:seed:all",
     "deploy": "git push heroku master"
   },
   "author": "",
