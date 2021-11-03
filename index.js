@@ -5,7 +5,8 @@ const multer = require('multer');
 const Controllers = require('./controller/construction.controller.js');
 
 const db = require('./models/index.js');
-db.sequelize.sync({ force: true });
+// db.sequelize.sync({ force: true });
+db.sequelize.sync();
 
 const upload = multer();
 const app = express()
