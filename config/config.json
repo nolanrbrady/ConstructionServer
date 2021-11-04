@@ -14,12 +14,6 @@
     "dialect": "postgres"
   },
   "production": {
-    "client": "pg",
-    "username": "bdrrccimtjpkxx",
-    "password": "74c2e993ca4175212d9a01d2e4b78ff6a333b06bd01244be1cf37cddce26c6f9",
-    "database": "d704f846c34rfe",
-    "host": "ec2-54-147-76-191.compute-1.amazonaws.com",
-    "dialect": "postgres",
-    "port": 5432
+    "use_env_variable": "DATABASE_URL"
   }
 }
