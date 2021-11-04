@@ -15,10 +15,10 @@
   },
   "production": {
     "client": "pg",
-    "username": "fdgztmxbyqlbar",
-    "password": "nul071218a489357715afe19e0d93cd1a79d347dac95b4b8164470c66d2b40244b9l",
-    "database": "ds5a17vr3jn1i",
-    "host": "ec2-34-200-161-87.compute-1.amazonaws.com",
+    "username": "bdrrccimtjpkxx",
+    "password": "74c2e993ca4175212d9a01d2e4b78ff6a333b06bd01244be1cf37cddce26c6f9",
+    "database": "d704f846c34rfe",
+    "host": "ec2-54-147-76-191.compute-1.amazonaws.com",
     "dialect": "postgres",
     "port": 5432
   }
