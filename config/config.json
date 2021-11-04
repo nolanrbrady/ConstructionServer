@@ -15,10 +15,11 @@
   },
   "production": {
     "client": "pg",
-    "username": "root",
-    "password": null,
-    "database": "constructionDB-production",
-    "host": "postgres://fdgztmxbyqlbar:071218a489357715afe19e0d93cd1a79d347dac95b4b8164470c66d2b40244b9@ec2-34-200-161-87.compute-1.amazonaws.com:5432/ds5a17vr3jn1i",
-    "dialect": "postgres"
+    "username": "fdgztmxbyqlbar",
+    "password": "nul071218a489357715afe19e0d93cd1a79d347dac95b4b8164470c66d2b40244b9l",
+    "database": "ds5a17vr3jn1i",
+    "host": "ec2-34-200-161-87.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "port": 5432
   }
 }
