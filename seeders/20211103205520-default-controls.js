@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return await queryInterface.bulkInsert('remote_control', [{
+    return await queryInterface.bulkInsert('remote-control', [{
       lod: 200,
       panel: 1,
       createdAt: new Date(),
@@ -11,6 +11,6 @@ module.exports = {
   }], {});
   },
   down: async (queryInterface, Sequelize) => {
-    return await queryInterface.bulkDelete('remote_control', null, {});
+    return await queryInterface.bulkDelete('remote-control', null, {});
   }
 };
