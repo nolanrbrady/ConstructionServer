@@ -10,7 +10,7 @@ db.sequelize.sync();
 
 const upload = multer();
 const app = express()
-const port = 3001
+const port = process.env.PORT ? process.env.PORT : 3000
 
 // Needed to avoid CORS errors due to split stack
 app.use(cors());
