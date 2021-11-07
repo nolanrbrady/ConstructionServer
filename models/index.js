@@ -1,7 +1,16 @@
 const dbConfig = require('../config/db.config');
 const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+let sequelize;
+if (process.env.DATABASE_URL) {
+  // Runs when code is run on Heroku server
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect:  'postgres',
+    protocol: 'postgres',
+    logging:  true //false
+  });
+} else {
+  // runs on local machine
+  sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
     dialect: dbConfig.dialect,
     // operatorsAliases: false,
@@ -11,7 +20,8 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
         acquire: dbConfig.pool.acquire,
         idle: dbConfig.pool.idle
       }
-});
+  });
+}
 
 const db = {};
 
