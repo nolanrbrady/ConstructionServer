@@ -5,6 +5,9 @@ const multer = require('multer');
 const Controllers = require('./controller/construction.controller.js');
 
 const db = require('./models/index.js');
+const SessionConfig = require('./controller/sessionChangeLog.controller.js');
+const SessionData = require('./controller/sessionTracking.controller.js');
+
 // db.sequelize.sync({ force: true });
 db.sequelize.sync();
 
@@ -35,9 +38,18 @@ app.put('/log-config-change', upload.array(), (req, res, next) =>{
     try {
         const data = req.body;
         console.log(data);
-        Controllers.logConfigChange(data, res);
+        SessionConfig.create(data, res);
     } catch (e) {
         next(e);
+    }
+})
+
+app.put('/session-tracking-data', upload.array(), (req, res, next) => {
+    try {
+        const data = req.body;
+        SessionData.create(data);
+    } catch (err) {
+        next(err);
     }
 })
 
@@ -52,7 +64,9 @@ app.get('/', async (req, res, next) => {
         // next(e);
         res.send(`Sorry, something went wrong getting the rig configuration. Error: ${e}`);
     }
-})
+});
+
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
