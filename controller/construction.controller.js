@@ -66,6 +66,7 @@ const update = (data, res) => {
 // Delete a Tutorial with the specified id in the request
 // const delete = (req, res) => {
   
+
 // };
 
 // Delete all Tutorials from the database.
