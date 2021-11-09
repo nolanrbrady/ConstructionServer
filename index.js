@@ -47,7 +47,7 @@ app.put('/log-config-change', upload.array(), (req, res, next) =>{
 app.put('/session-tracking-data', upload.array(), (req, res, next) => {
     try {
         const data = req.body;
-        SessionData.create(data);
+        SessionData.create(data, res);
     } catch (err) {
         next(err);
     }
