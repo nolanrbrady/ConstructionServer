@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
       },
     });
 
-    const UpdateSessionChangeLog = sequelize.define("session-changelogs", {
+    const SessionChangeLog = sequelize.define("session-changelogs", {
         previousLod: {
             type: Sequelize.INTEGER
         },
@@ -50,11 +50,11 @@ module.exports = (sequelize, Sequelize) => {
           sessionEndTime: {
             type: Sequelize.DATE
           }
-    })
+    });
   
     return {
         RemoteControls,
-        UpdateSessionChangeLog,
+        SessionChangeLog,
         SessionTracking
     };
   };

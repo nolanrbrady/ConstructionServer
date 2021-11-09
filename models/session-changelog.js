@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class session - changelog extends Model {
+  class SessionChangeLog extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  session - changelog.init({
+  SessionChangeLog.init({
     previousLod: DataTypes.INTEGER,
     previousPanel: DataTypes.INTEGER,
     currentPanel: DataTypes.INTEGER,
@@ -23,5 +23,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'session-changelog',
   });
-  return session - changelog;
+  return SessionChangeLog;
 };
