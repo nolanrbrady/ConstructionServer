@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
       },
     });
 
-    const UpdateSessionChangeLog = sequelize.define("session-changelogs", {
+    const SessionChangeLog = sequelize.define("session-changelogs", {
         previousLod: {
             type: Sequelize.INTEGER
         },
@@ -27,9 +27,34 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATE
         } 
     });
+
+    const SessionTracking = sequelize.define("session-tracking-data", {
+        activeLod: {
+            type: Sequelize.INTEGER
+          },
+          activePanel: {
+            type: Sequelize.INTEGER
+          },
+          eyeTracking: {
+            type: Sequelize.JSON
+          },
+          headTracking: {
+            type: Sequelize.JSON
+          },
+          handTracking: {
+            type: Sequelize.JSON
+          },
+          sessionStartTime: {
+            type: Sequelize.DATE
+          },
+          sessionEndTime: {
+            type: Sequelize.DATE
+          }
+    });
   
     return {
         RemoteControls,
-        UpdateSessionChangeLog,
+        SessionChangeLog,
+        SessionTracking
     };
   };

@@ -1,5 +1,5 @@
 const db = require("../models");
-const { RemoteControls, UpdateSessionChangeLog } = db.construction;
+const { RemoteControls, SessionChangeLog } = db.construction;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
@@ -29,19 +29,6 @@ const create = (data, res) => {
     });
 };
 
-const logConfigChange = (data, res) => {
-  if (!data) res.status(400).send({ message: "Couldn't save config change"});
-  
-  UpdateSessionChangeLog.create(data)
-    .then(dataReturn => {
-      res.send(dataReturn)
-    })
-    .catch(err => {
-      res.status(400).send({
-        message: err.message || "There was an error"
-      });
-    });
-};
 
 // Retrieve all Tutorials from the database.
 const findAll = (req, res) => {
@@ -94,8 +81,7 @@ const findAllPublished = (req, res) => {
 const Controllers = {
     create,
     update,
-    findOne,
-    logConfigChange
+    findOne
 }
 
 module.exports = Controllers;
