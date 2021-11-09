@@ -27,9 +27,34 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATE
         } 
     });
+
+    const SessionTracking = sequelize.define("session-tracking-data", {
+        activeLod: {
+            type: Sequelize.INTEGER
+          },
+          activePanel: {
+            type: Sequelize.INTEGER
+          },
+          eyeTracking: {
+            type: Sequelize.JSON
+          },
+          headTracking: {
+            type: Sequelize.JSON
+          },
+          handTracking: {
+            type: Sequelize.JSON
+          },
+          sessionStartTime: {
+            type: Sequelize.DATE
+          },
+          sessionEndTime: {
+            type: Sequelize.DATE
+          }
+    })
   
     return {
         RemoteControls,
         UpdateSessionChangeLog,
+        SessionTracking
     };
   };
