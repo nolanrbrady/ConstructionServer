@@ -35,7 +35,7 @@ app.put('/', upload.array(), (req, res, next) => {
 app.get('/', async (req, res, next) => {
     try {
        const config_data = await Controllers.findOne(req, res);
-       console.log("Configuration Data from DB", config_data);
+    //    console.log("Configuration Data from DB", config_data);
        if (config_data) res.send(config_data);
        else res.send("Sorry, something went wrong getting the rig configuration.")
     } catch(e) {
