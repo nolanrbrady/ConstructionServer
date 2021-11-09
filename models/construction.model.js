@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Construction = sequelize.define("remote-controls", {
+    const RemoteControls = sequelize.define("remote-controls", {
       lod: {
         type: Sequelize.INTEGER,
         defaultValue: 200
@@ -9,6 +9,27 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: 1
       },
     });
+
+    const UpdateSessionChangeLog = sequelize.define("session-changelogs", {
+        previousLod: {
+            type: Sequelize.INTEGER
+        },
+        previousPanel: {
+            type: Sequelize.INTEGER 
+        },
+        currentPanel: {
+            type: Sequelize.INTEGER
+        },
+        currentLod: {
+            type: Sequelize.INTEGER
+        },
+        timeChanged: {
+            type: Sequelize.DATE
+        } 
+    });
   
-    return Construction;
+    return {
+        RemoteControls,
+        UpdateSessionChangeLog,
+    };
   };

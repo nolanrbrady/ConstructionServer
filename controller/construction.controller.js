@@ -1,5 +1,5 @@
 const db = require("../models");
-const Construction = db.construction;
+const { RemoteControls, UpdateSessionChangeLog } = db.construction;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
@@ -17,7 +17,7 @@ const create = (data, res) => {
   const test_configuration = { lod, panel };
 
   // Save Tutorial in the database
-  Construction.create(test_configuration)
+  RemoteControls.create(test_configuration)
     .then(dataReturn => {
       res.send(dataReturn);
     })
@@ -29,6 +29,20 @@ const create = (data, res) => {
     });
 };
 
+const logConfigChange = (data, res) => {
+  if (!data) res.status(400).send({ message: "Couldn't save config change"});
+  
+  UpdateSessionChangeLog.create(data)
+    .then(dataReturn => {
+      res.send(dataReturn)
+    })
+    .catch(err => {
+      res.status(400).send({
+        message: err.message || "There was an error"
+      });
+    });
+};
+
 // Retrieve all Tutorials from the database.
 const findAll = (req, res) => {
   
@@ -36,14 +50,14 @@ const findAll = (req, res) => {
 
 // Find a single Tutorial with an id
 const findOne = async (req, res) => {
-    const config_data = await Construction.findOne({ where: {id: 1 }});
+    const config_data = await RemoteControls.findOne({ where: {id: 1 }});
     // console.log("Config Data in Controller", config_data);
     return config_data.dataValues;
 };
 
 // Update a Tutorial by the id in the request
 const update = (data, res) => {
-    Construction.update(data, {
+    RemoteControls.update(data, {
       where: { id: 1 }
     })
       .then(val => {
@@ -80,7 +94,8 @@ const findAllPublished = (req, res) => {
 const Controllers = {
     create,
     update,
-    findOne
+    findOne,
+    logConfigChange
 }
 
 module.exports = Controllers;
