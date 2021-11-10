@@ -34,7 +34,7 @@ app.put('/', upload.array(), (req, res, next) => {
    }
 });
 
-app.put('/log-config-change', upload.array(), (req, res, next) =>{
+app.put('/config-change-log', upload.array(), (req, res, next) =>{
     try {
         const data = req.body;
         console.log(data);
