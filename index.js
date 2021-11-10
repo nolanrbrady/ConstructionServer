@@ -66,6 +66,18 @@ app.get('/', async (req, res, next) => {
     }
 });
 
+app.get('/config-change-log', async(req, res, next) => {
+    try {
+        const change_log_data = await SessionConfig.findAll();
+        if (!change_log_data) res.send(`Sorry, something went wrong getting change log data`);
+        else res.send(change_log_data);
+        
+    } catch (err) {
+        next(err);
+        res.send(`There was an error getting the config change log: ${err}`)
+    }
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

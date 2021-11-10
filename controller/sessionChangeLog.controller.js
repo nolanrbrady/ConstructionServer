@@ -16,8 +16,14 @@ const create = (data, res) => {
     });
 };
 
+const findAll = async () => {
+  const data = await SessionChangeLog.findAll();
+  return data;
+}
+
 const SessionConfig = { 
-    create 
+    create,
+    findAll
 };
 
 module.exports = SessionConfig
