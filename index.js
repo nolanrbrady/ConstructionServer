@@ -78,6 +78,17 @@ app.get('/config-change-log', async(req, res, next) => {
     }
 })
 
+app.get('/session-tracking-data', async (req, res, next) => {
+    try {
+        const session_data = await SessionData.findAll();
+        if(!session_data) res.send("No session data available");
+        else res.send(session_data);
+    } catch (err) {
+        next(err);
+        res.send(`There was an error getting session tracking data: ${err}`);
+    }
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

@@ -16,9 +16,15 @@ const create = (data, res) => {
         });    
 };
 
+const findAll = async() => {
+    const data = await SessionTracking.findAll();
+    return data;
+}
+
 
 const SessionData = {
-    create
+    create,
+    findAll
 }
 
 module.exports = SessionData;
