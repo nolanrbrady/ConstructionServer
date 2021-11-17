@@ -7,6 +7,7 @@ const Controllers = require('./controller/construction.controller.js');
 const db = require('./models/index.js');
 const SessionConfig = require('./controller/sessionChangeLog.controller.js');
 const SessionData = require('./controller/sessionTracking.controller.js');
+const SessionRecordings = require('./controller/sessionRecoding.controller.js');
 
 // db.sequelize.sync({ force: true });
 db.sequelize.sync();
@@ -53,6 +54,18 @@ app.post('/session-tracking-data', upload.array(), (req, res, next) => {
     }
 })
 
+app.post('/session-recording', upload.array(), (req, res, next) => {
+    try {
+        const data = req.body;
+        SessionRecordings.create(data, res);
+    } catch (err) {
+        next(err);
+    }
+})
+
+//===========
+// GET ROUTES
+//===========
 
 app.get('/', async (req, res, next) => {
     try {
@@ -87,7 +100,19 @@ app.get('/session-tracking-data', async (req, res, next) => {
         next(err);
         res.send(`There was an error getting session tracking data: ${err}`);
     }
+});
+
+
+app.get('session-recording', async(req, res, next) => {
+    try {
+        const session_recordings = await SessionRecordings.findAll();
+        if (!session_recordings) res.send("No recordings available")
+        else res.send(`There was an error getting recordings: ${err}`);
+    } catch (err) {
+        next(err);
+    }
 })
+
 
 
 app.listen(port, () => {

@@ -51,10 +51,34 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATE
           }
     });
+
+    const SessionRecording = sequelize.define("session-recording", {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      fileName: {
+        type: Sequelize.STRING,
+      },
+      url: {
+        type: Sequelize.STRING,
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+    });
   
     return {
         RemoteControls,
         SessionChangeLog,
-        SessionTracking
+        SessionTracking,
+        SessionRecording
     };
   };
