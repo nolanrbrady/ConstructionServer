@@ -57,7 +57,7 @@ app.post('/session-tracking-data', upload.array(), (req, res, next) => {
 app.post('/session-recording', upload.array(), (req, res, next) => {
     try {
         const data = req.body;
-        console.log("Data in session recording", data);
+        // console.log("Data in session recording", data);
         SessionRecordings.create(data, res);
     } catch (err) {
         console.log(err);
