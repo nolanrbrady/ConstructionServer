@@ -20,8 +20,8 @@ const port = process.env.PORT ? process.env.PORT : 3001
 app.use(cors());
 
 // Needed to parse the incoming data from front end
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '1000mb' }));
+app.use(bodyParser.urlencoded({ limit: '1000mb', extended: true }));
 
 app.put('/', upload.array(), (req, res, next) => {
    try {
@@ -57,8 +57,10 @@ app.post('/session-tracking-data', upload.array(), (req, res, next) => {
 app.post('/session-recording', upload.array(), (req, res, next) => {
     try {
         const data = req.body;
+        console.log("Data in session recording", data);
         SessionRecordings.create(data, res);
     } catch (err) {
+        console.log(err);
         next(err);
     }
 })
