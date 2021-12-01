@@ -108,7 +108,7 @@ app.get('/session-tracking-data', async (req, res, next) => {
 app.get('/session-recording', async(req, res, next) => {
     try {
         const session_recordings = await SessionRecordings.findAll();
-        console.log(session_recordings);
+        // console.log(session_recordings);
         if (!session_recordings) res.send("No recordings available")
         else res.send(session_recordings);
     } catch (err) {
