@@ -23,6 +23,10 @@ app.use(cors());
 app.use(bodyParser.json({ limit: '1000mb' }));
 app.use(bodyParser.urlencoded({ limit: '1000mb', extended: true }));
 
+//===========
+// PUT ROUTES
+//===========
+
 app.put('/', upload.array(), (req, res, next) => {
    try {
     const data = req.body;
@@ -44,6 +48,10 @@ app.put('/config-change-log', upload.array(), (req, res, next) =>{
         next(e);
     }
 })
+
+//===========
+// POST ROUTES
+//===========
 
 app.post('/session-tracking-data', upload.array(), (req, res, next) => {
     try {
