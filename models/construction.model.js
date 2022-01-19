@@ -62,8 +62,8 @@ module.exports = (sequelize, Sequelize) => {
       fileName: {
         type: Sequelize.STRING,
       },
-      url: {
-        type: Sequelize.STRING,
+      blob: {
+        type: Sequelize.BLOB('long'),
       },
       createdAt: {
         allowNull: false,

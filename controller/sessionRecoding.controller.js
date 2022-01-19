@@ -4,7 +4,7 @@ const { SessionRecording } = db.construction;
 const sequelize = require('sequelize');
 
 const create = (data, res) => {
-    if (!data) res.status(400).send({ message: "Couldn't save session recording"});
+  if (!data) res.status(400).send({ message: "Couldn't save session recording"});
   SessionRecording.create(data)
     .then(dataReturn => {
       res.send(dataReturn)
