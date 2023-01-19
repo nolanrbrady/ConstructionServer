@@ -1,6 +1,7 @@
 const dbConfig = require('../config/db.config');
 const Sequelize = require('sequelize');
 let sequelize;
+// Test
 if (process.env.DATABASE_URL) {
   // Runs when code is run on Heroku server
   sequelize = new Sequelize(process.env.DATABASE_URL, {
