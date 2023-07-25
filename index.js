@@ -47,7 +47,7 @@ app.put('/config-change-log', upload.array(), (req, res, next) =>{
     } catch (e) {
         next(e);
     }
-})
+});
 
 //===========
 // POST ROUTES
@@ -99,13 +99,17 @@ app.get('/config-change-log', async(req, res, next) => {
         next(err);
         res.send(`There was an error getting the config change log: ${err}`)
     }
-})
+});
 
-app.get('/all-session-tracking-data', async (req, res, next) => {
+app.get('/session-tracking-data', async (req, res, next) => {
     try {
-        const session_data = await SessionData.findAll();
+        const session_data = await SessionData.findAll({
+		attributes: ['eyeTracking'],
+		order: [['id', 'DESC']],
+		limit: 10,
+	});
         if(!session_data) res.send("No session data available");
-        else res.send(session_data);
+        else res.send(session_data.slice(-5);
     } catch (err) {
         next(err);
         res.send(`There was an error getting session tracking data: ${err}`);
@@ -122,7 +126,7 @@ app.get('/session-recording', async(req, res, next) => {
         next(err);
         res.send(`There was an error getting video recordings: ${err}`)
     }
-})
+});
 
 
 
