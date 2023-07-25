@@ -105,9 +105,10 @@ app.get('/session-tracking-data', async (req, res, next) => {
     try {
         // const session_data = await SessionData.query('SELECT * FROM "session-tracking-data" ORDER BY id DESC LIMIT 100;');
         const session_data = await SessionData.findAll({
-		order: 'CreatedAt',
-		limit: 10
-	})
+		attribute: ['eyeTracking'],
+		order: [['createdAt', 'DESC']],
+		limit: 10,
+	});
         if(!session_data) res.send("No session data available");
         else res.send(session_data.slice(-5);
     } catch (err) {
