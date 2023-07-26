@@ -101,6 +101,23 @@ app.get('/config-change-log', async(req, res, next) => {
     }
 });
 
+// Just returns the last ten eyetracking entries
+app.get('/session-tracking-data', async (req, res, next) => {
+    try {
+        const session_data = await SessionData.findAll({
+		attributes: ['eyeTracking'],
+		order: [['id', 'DESC']],
+		limit: 10,
+	});
+        if(!session_data) res.send("No session data available");
+        else res.send(session_data);
+    } catch (err) {
+        next(err);
+        res.send(`There was an error getting session tracking data: ${err}`);
+    }
+});
+
+// Returns all the session tracking information (USE SPARINGLY)
 app.get('/all-session-tracking-data', async (req, res, next) => {
     try {
         const session_data = await SessionData.findAll();
